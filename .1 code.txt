@@ -1,0 +1,20 @@
+#define LDR1_PIN 14  // GPIO14 (D5)
+#define LDR2_PIN 12  // GPIO12 (D6)
+
+void setup() {
+    Serial.begin(115200);
+    pinMode(LDR1_PIN, INPUT);
+    pinMode(LDR2_PIN, INPUT);
+}
+
+void loop() {
+    int ldr1_state = digitalRead(LDR1_PIN);
+    int ldr2_state = digitalRead(LDR2_PIN);
+
+    Serial.print("LDR1: ");
+    Serial.print(ldr1_state);
+    Serial.print("  |  LDR2: ");
+    Serial.println(ldr2_state);
+
+    delay(500);  // Delay to avoid flooding the serial monitor
+}

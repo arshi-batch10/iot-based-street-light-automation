@@ -1,0 +1,38 @@
+#define LDR1_PIN 14  // GPIO14 (D5)
+#define LDR2_PIN 12  // GPIO12 (D6)
+#define LED1_PIN 4   // GPIO4 (D2)
+#define LED2_PIN 5   // GPIO5 (D1)
+
+void setup() {
+    Serial.begin(115200);
+    pinMode(LDR1_PIN, INPUT);
+    pinMode(LDR2_PIN, INPUT);
+    pinMode(LED1_PIN, OUTPUT);
+    pinMode(LED2_PIN, OUTPUT);
+}
+
+void loop() {
+    int ldr1_state = digitalRead(LDR1_PIN);
+    int ldr2_state = digitalRead(LDR2_PIN);
+
+    Serial.print("LDR1: ");
+    Serial.print(ldr1_state);
+    Serial.print("  |  LDR2: ");
+    Serial.println(ldr2_state);
+
+    // Turn on LED1 if LDR1 detects light
+    if (ldr1_state == HIGH) {
+        digitalWrite(LED1_PIN, HIGH);
+    } else {
+        digitalWrite(LED1_PIN, LOW);
+    }
+
+    // Turn on LED2 if LDR2 detects light
+    if (ldr2_state == HIGH) {
+        digitalWrite(LED2_PIN, HIGH);
+    } else {
+        digitalWrite(LED2_PIN, LOW);
+    }
+
+    delay(500);  // Delay to avoid flooding the serial monitor
+}
